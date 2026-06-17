@@ -1,4 +1,4 @@
-# ConnectX: Concurrent Messaging Platform |
+# ConnectX: Concurrent Messaging Platform 
 C++, TCP Sockets, SQLite, Multithreading
 
 
