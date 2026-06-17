@@ -26,3 +26,33 @@ Server
  ├─ Room Manager
  ├─ Message Dispatcher
  └─ Database
+
+Features
+--------
+- User Registration & Authentication
+- Multi-room Chat Support
+- Private Messaging
+- Offline Message Delivery
+- Last-Seen Tracking
+- SQLite-based Persistent Storage
+- Thread Pool for Concurrent Request Processing
+- Thread-safe Shared State Management
+
+Tech Stack
+----------
+- C++
+- POSIX/WinSock Sockets
+- SQLite
+- Multithreading
+- Mutex Synchronization
+- Thread Pool Architecture
+
+Scalability
+-----------
+The server uses a fixed-size thread pool and task queue
+instead of spawning one thread per client connection.
+
+Benefits:
+- Reduced thread creation overhead
+- Better resource utilization
+- Improved scalability under concurrent load
