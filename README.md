@@ -1,6 +1,6 @@
-# ConnectX: Concurrent Messaging Platform | C++, TCP Sockets, SQLite, Multithreading
+# ConnectX: Concurrent Messaging Platform |
+C++, TCP Sockets, SQLite, Multithreading
 
-This is the project
 
 This is a simple, multi-user real-time chat application built using sockets in C++. 
 The system stores persistent state in a SQLite database located at `chat.db` in the server working directory. The server creates tables for `Users`, `Rooms`, `RoomMembers`, and `Messages` to persist users, room structure, membership, chat history, and offline private messages.
