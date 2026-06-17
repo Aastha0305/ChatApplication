@@ -4,46 +4,37 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include <thread>
-#include <fstream> // For file logging
 #pragma comment(lib, "ws2_32.lib")
 using namespace std;
 
-ofstream clientLog("client_history.txt", ios::app); // Log file for client messages
-/*
-initialise winsock library
-create the socket
-connect to the server
-send/rcv
-close the socket
-clean the winsock
-*/
-// Function to send messages
 void SendMessageToServer(SOCKET s) {
-    cout << "Enter your chat name: ";
-    string name;
-    getline(cin, name);
+    cout << "Type /register <username> <password> or /login <username> <password> to join the chat." << endl;
+    cout << "Then create/join a room with /create <room-name> or /join <room-name>." << endl;
+    cout << "Type /leave <room-name> to leave a room and /quit to exit.\n";
 
     string message;
     while (true) {
-        getline(cin, message);
-        string fullMessage = name + ": " + message;
-        clientLog << fullMessage << endl; // Log sent message
+        if (!getline(cin, message)) {
+            break;
+        }
 
-        int bytesSent = send(s, fullMessage.c_str(), fullMessage.length(), 0);
+        if (message.empty()) {
+            continue;
+        }
+
+        int bytesSent = send(s, message.c_str(), static_cast<int>(message.length()), 0);
         if (bytesSent == SOCKET_ERROR) {
             cerr << "Error sending message: " << WSAGetLastError() << endl;
             break;
         }
 
-        if (message == "quit") {
+        if (message == "/quit") {
             cout << "You exited the chat. Press Ctrl+C to terminate the client." << endl;
             break;
         }
-
     }
 }
 
-// Function to receive messages
 void ReceiveMessagesFromServer(SOCKET s) {
     char buffer[4096];
     while (true) {
@@ -54,8 +45,7 @@ void ReceiveMessagesFromServer(SOCKET s) {
         }
 
         string receivedMessage(buffer, bytesReceived);
-        cout << receivedMessage << endl;
-        clientLog << "Received: " << receivedMessage << endl; // Log received message
+        cout << receivedMessage;
     }
 }
 
