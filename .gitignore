@@ -1,0 +1,15 @@
+*.db
+chat_server
+*.exe
+users.txt
+client_history.txt
+chat_history.txt
+
+# Build artifacts
+*.o
+*.obj
+*.out
+
+# IDE / OS files
+.vscode/
+.DS_Store
