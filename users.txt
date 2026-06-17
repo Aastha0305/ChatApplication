@@ -1,2 +1,0 @@
-aastha,password123
-rahul,password456
